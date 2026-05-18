@@ -302,7 +302,7 @@
 		$contactform[0].reset();
 		submitMSG(true, "Message Sent Successfully!")
 	}
-
+          
 	function submitMSG(valid, msg){
 		if(valid){
 			var msgClasses = "h4 text-success";
