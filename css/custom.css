@@ -336,9 +336,9 @@ a:focus{
 
 .loading-container,
 .loading{
-	height: 500px;
+	height: 550px;
 	position: relative;
-	width: 500px;
+	width: 550px;
 	border-radius: 100%;
 }
 
@@ -1639,6 +1639,26 @@ header.main-header .header-sticky.active{
 
 .feature-item-btn a::before{
 	background-image: url(../images/arrow-white.svg);
+}
+
+.why-choose-reels{
+	row-gap: 30px;
+}
+
+.reel-item{
+	height: calc(100% - 30px);
+	border-radius: 20px;
+	overflow: hidden;
+	background: var(--secondary-color);
+	box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+}
+
+.reel-item video{
+	display: block;
+	width: 100%;
+	aspect-ratio: 9 / 16;
+	object-fit: cover;
+	background: var(--secondary-color);
 }
 
 /************************************/
@@ -4605,6 +4625,10 @@ header.main-header .header-sticky.active{
 		left: 20px;
 		right: 20px;
 		padding: 20px;
+	}
+
+	.reel-item{
+		height: auto;
 	}
 
 	.our-programs{
