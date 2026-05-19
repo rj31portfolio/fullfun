@@ -1647,6 +1647,7 @@ header.main-header .header-sticky.active{
 
 .reel-item{
 	height: calc(100% - 30px);
+	border: 3px solid var(--primary-color);
 	border-radius: 20px;
 	overflow: hidden;
 	background: var(--secondary-color);
