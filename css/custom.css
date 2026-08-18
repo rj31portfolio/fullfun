@@ -327,72 +327,212 @@ a:focus{
 	left: 0;
 	right: 0;
 	bottom: 0;
-	z-index: 1000;
-	background: var(--primary-color);
+	z-index: 10000;
+	background:
+		radial-gradient(circle at top left, rgba(255, 241, 184, 0.16), transparent 24%),
+		radial-gradient(circle at bottom right, rgba(217, 120, 4, 0.18), transparent 22%),
+		linear-gradient(135deg, #121815 0%, #1A211E 55%, #221f17 100%);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 }
 
-.loading-container,
-.loading{
-	height: 550px;
-	position: relative;
-	width: 550px;
-	border-radius: 100%;
-}
-
 .loading-container{
-	margin: 40px auto;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: min(82vw, 420px);
+	padding: 48px 32px 34px;
+	border-radius: 32px;
+	background: rgba(255, 255, 255, 0.06);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	box-shadow: 0 30px 80px rgba(0, 0, 0, 0.28);
+	backdrop-filter: blur(14px);
+	overflow: hidden;
 }
 
-.loading{
-	border: 1px solid transparent;
-	border-color: transparent var(--white-color) transparent var(--white-color);
-	animation: rotate-loading 1.5s linear 0s infinite normal;
-	transform-origin: 50% 50%;
+.loading-container::before{
+	content: '';
+	position: absolute;
+	inset: 0;
+	background:
+		radial-gradient(circle at 20% 20%, rgba(255, 241, 184, 0.18), transparent 26%),
+		radial-gradient(circle at 80% 78%, rgba(217, 120, 4, 0.2), transparent 22%);
+	pointer-events: none;
 }
 
-.loading-container:hover .loading,
-.loading-container .loading{
-	transition: all 0.5s ease-in-out;
+.logo-loader{
+	position: relative;
+	width: clamp(160px, 28vw, 230px);
+	height: clamp(160px, 28vw, 230px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.logo-loader::before,
+.logo-loader::after{
+	content: '';
+	position: absolute;
+	inset: 12px;
+	border-radius: 50%;
+	border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.logo-loader::after{
+	inset: 28px;
+	border-color: rgba(255, 241, 184, 0.18);
+}
+
+.loader-orbit{
+	position: absolute;
+	inset: 0;
+	border-radius: 50%;
+	animation: logoOrbit 5.6s linear infinite;
+}
+
+.loader-orbit::before{
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: -4px;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	transform: translateY(-50%);
+}
+
+.loader-orbit.orbit-one::before{
+	background: linear-gradient(135deg, #ffcf6b, #D97804);
+	box-shadow: 0 0 18px rgba(255, 207, 107, 0.45);
+}
+
+.loader-orbit.orbit-two{
+	inset: 16px;
+	animation-direction: reverse;
+	animation-duration: 4.2s;
+}
+
+.loader-orbit.orbit-two::before{
+	width: 12px;
+	height: 12px;
+	background: linear-gradient(135deg, #ffffff, #FFF1B8);
+	box-shadow: 0 0 16px rgba(255, 255, 255, 0.32);
+}
+
+.loader-glow{
+	position: absolute;
+	inset: 36px;
+	border-radius: 50%;
+	background: radial-gradient(circle, rgba(255, 241, 184, 0.22) 0%, rgba(255, 241, 184, 0) 68%);
+	filter: blur(4px);
+	animation: logoPulse 2.6s ease-in-out infinite;
 }
 
 #loading-icon{
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	width: 500px;
+	position: relative;
+	z-index: 2;
+	width: clamp(108px, 20vw, 150px);
 	max-width: 100%;
-	transform: translate(-50%, -50%);
+	padding: 16px;
+	border-radius: 28px;
+	background: rgba(255, 255, 255, 0.92);
+	box-shadow: 0 18px 36px rgba(0, 0, 0, 0.16);
+	animation: logoFloat 2.8s ease-in-out infinite;
 }
 
 #loading-icon img{
 	width: 100%;
-	height: 100%;
-	object-fit: contain;
+	display: block;
+	filter: drop-shadow(0 10px 16px rgba(26, 33, 30, 0.12));
+}
+
+.loading-text{
+	position: relative;
+	z-index: 2;
+	margin: 26px 0 0;
+	font-size: 15px;
+	font-weight: 500;
+	letter-spacing: 0.24em;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, 0.82);
+	text-align: center;
+}
+
+.loading-text::after{
+	content: '';
+	display: block;
+	width: 74px;
+	height: 3px;
+	margin: 14px auto 0;
+	border-radius: 999px;
+	background: linear-gradient(90deg, rgba(255, 241, 184, 0.16), var(--accent-color), rgba(255, 241, 184, 0.16));
+	animation: loaderLine 1.8s ease-in-out infinite;
 }
 
 @media only screen and (max-width: 767px){
-	.loading-container,
-	.loading{
-		width: min(500px, 90vw);
-		height: min(500px, 90vw);
+	.loading-container{
+		width: min(90vw, 360px);
+		padding: 40px 24px 28px;
+	}
+
+	.logo-loader{
+		width: 190px;
+		height: 190px;
 	}
 
 	#loading-icon{
-		width: min(500px, 90vw);
-		height: min(500px, 90vw);
+		width: 124px;
+	}
+
+	.loading-text{
+		font-size: 12px;
+		letter-spacing: 0.18em;
 	}
 }
 
-@keyframes rotate-loading{
-	0%{
+@keyframes logoOrbit{
+	from{
 		transform: rotate(0deg);
 	}
-
-	100%{
+	to{
 		transform: rotate(360deg);
+	}
+}
+
+@keyframes logoPulse{
+	0%,
+	100%{
+		transform: scale(0.96);
+		opacity: 0.6;
+	}
+	50%{
+		transform: scale(1.08);
+		opacity: 1;
+	}
+}
+
+@keyframes logoFloat{
+	0%,
+	100%{
+		transform: translateY(0px);
+	}
+	50%{
+		transform: translateY(-8px);
+	}
+}
+
+@keyframes loaderLine{
+	0%,
+	100%{
+		transform: scaleX(0.72);
+		opacity: 0.72;
+	}
+	50%{
+		transform: scaleX(1);
+		opacity: 1;
 	}
 }
 
